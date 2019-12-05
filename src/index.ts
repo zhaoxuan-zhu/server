@@ -9,6 +9,8 @@ app.use(bodyparser())
 app.use(logger())
 app.use(cors())
 
+// app.set("secret","zhuzhaoxuanniubi")
+
 import router from "./routes"
 app.use(router.routes(),router.allowedMethods())
 

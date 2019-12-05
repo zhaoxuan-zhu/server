@@ -1,6 +1,8 @@
 import Router from "koa-router"
 import User from "../../schema/User"
 import bcrypt from 'bcrypt'
+import jwt from "jsonwebtoken"
+import secret from '../../secret';
 
 interface Res{
     msg:string,
@@ -9,7 +11,7 @@ const userRoute = function():any{
     const route = new Router()
 
     route.get("/",async function(ctx):Promise<void>{
-        ctx.body = "hello"
+        ctx.body = await User.find()
     })
 
     //注册
@@ -55,9 +57,10 @@ const userRoute = function():any{
             }
             return
         }
+        const token:string = jwt.sign({_id:hasUser._id},secret)
         ctx.body = {
             msg:"登录成功",
-            token:112212121,
+            token,
             _id:hasUser._id
         }
     })

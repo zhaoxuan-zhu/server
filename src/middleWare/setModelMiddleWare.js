@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -17,7 +16,14 @@ const inflection_1 = __importDefault(require("inflection"));
 const setModelMiddleWare = function (ctx, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const resourceClassify = inflection_1.default.classify(ctx.params.resource);
-        console.log(resourceClassify);
+        console.log(typeof (resourceClassify));
+        if (resourceClassify === "User") {
+            ctx.status = 403;
+            ctx.body = {
+                msg: "请求地址错误🙅‍♂️"
+            };
+            return;
+        }
         try {
             ctx.Model = require(path_1.default.resolve(`${__dirname}/../schema/${resourceClassify}`));
             yield next();

@@ -11,6 +11,7 @@ const app = new koa_1.default();
 app.use(koa_bodyparser_1.default());
 app.use(koa_logger_1.default());
 app.use(cors_1.default());
+// app.set("secret","zhuzhaoxuanniubi")
 const routes_1 = __importDefault(require("./routes"));
 app.use(routes_1.default.routes(), routes_1.default.allowedMethods());
 const port = 3000;
