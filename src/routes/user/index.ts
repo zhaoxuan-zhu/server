@@ -43,10 +43,10 @@ const userRoute = function():any{
         const {name,password} = ctx.request.body
         const hasUser:any = await User.findOne({name}).select("+password")
         if(hasUser === null){
-            ctx.status = 404
             ctx.body = {
                 msg:"该用户不存在"
             }
+            ctx.status = 404
             return
         }
         const loginResult = bcrypt.compareSync(password,hasUser.password)

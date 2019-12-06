@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@koa/cors": "^3.0.0",
+    "@koa/cors": "^2.2.3",
     "@types/bcrypt": "^3.0.0",
     "@types/inflection": "^1.5.28",
     "@types/jsonwebtoken": "^8.3.5",
