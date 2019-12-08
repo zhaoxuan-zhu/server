@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 import assert from "http-assert"
-import secret from '../secret';
+import { secret } from '../secret';
 import User from "../schema/User"
 
 // console.log(jwt.sign("5de909b5b5b48c0fc1949fad",key))

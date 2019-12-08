@@ -13,7 +13,8 @@ const newSchema = new mongoose.Schema({
         select: false
     },
     createTime: { type: Date, default: Date.now },
-    icon: { type: String, default: "http://1t.click/btWU" }
+    icon: { type: String, default: "http://1t.click/btWU" },
+    pruview: {type: String, default: "visitors"}
 })
 
 export default mongoose.model("User",newSchema)

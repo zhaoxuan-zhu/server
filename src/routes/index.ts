@@ -12,5 +12,8 @@ const router:any = new Router()
 
 router.use("/api/curd/:resource",jwtMiddleWare,setModelMiddleWare,restful_route.routes(),restful_route.allowedMethods())
 router.use("/user",user_route.routes(),user_route.allowedMethods())
+router.get("/",async function(ctx:any):Promise<void>{
+    ctx.body="hello"
+})
 
 export default router

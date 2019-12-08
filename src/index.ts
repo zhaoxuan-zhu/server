@@ -15,6 +15,7 @@ import router from "./routes"
 app.use(router.routes(),router.allowedMethods())
 
 
+
 const port:number = 3000
 app.listen(port,()=>{
     console.log(`server is runnig on ${port}!`)
