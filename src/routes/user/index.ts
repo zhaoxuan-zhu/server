@@ -69,6 +69,7 @@ const userRoute = function (): any {
     route.get("/menuList", async function (ctx: any): Promise<void> {
         const _id: string = ctx.query.id
         const getUser: any = await User.findById({ _id })
+        console.log(getUser)
         if (getUser !== null || getUser) {
             const userPruview: string = getUser.pruview
             const visitorsMenu = [
@@ -88,7 +89,11 @@ const userRoute = function (): any {
                 },
                 {
                     name:"MyFollowing",
-                    path: "/followingda"
+                    path: "/following"
+                },
+                {
+                    name: "User",
+                    path: "/user"
                 }
             ]
             if (userPruview === "visitors") {
@@ -146,7 +151,10 @@ const userRoute = function (): any {
     })
 
     route.delete("/:id", async function (ctx): Promise<void> {
-        ctx.body = "hello"
+        const id = ctx.params.id
+        console.log(id)
+        const result = await User.findByIdAndDelete(id)
+        ctx.body = result
     })
 
     return route
